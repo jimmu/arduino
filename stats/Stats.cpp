@@ -1,4 +1,3 @@
-#include "Arduino.h"
 #include "Stats.h"
 
 Stats::Stats(int bufferSize) {

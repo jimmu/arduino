@@ -1,8 +1,6 @@
 #ifndef Stats_h
 #define Stats_h
 
-#include "Arduino.h"
-
 class Stats
 {
   public:
@@ -11,7 +9,7 @@ class Stats
     int mean(int value);
   private:
     int _bufferSize;
-    int[10] _values;
+    int _values [10];
     int _currentIndex;
     int _numValues;
 }
