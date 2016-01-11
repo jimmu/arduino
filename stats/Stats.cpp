@@ -2,8 +2,8 @@
 
 Stats::Stats(int bufferSize) {
   _bufferSize = bufferSize;
-  if (_bufferSize > 10){
-    _bufferSize = 10;
+  if (_bufferSize > maxSize){
+    _bufferSize = maxSize;
   }
   _numValues = 0;
   _currentIndex = 0;

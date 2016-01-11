@@ -7,9 +7,10 @@ class Stats
     Stats(int bufferSize);
     int median(int value);
     int mean(int value);
+    const int maxSize = 10;
   private:
     int _bufferSize;
-    int _values [10];
+    int _values [maxSize];
     int _currentIndex;
     int _numValues;
 }
