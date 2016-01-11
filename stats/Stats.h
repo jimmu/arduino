@@ -13,6 +13,7 @@ class Stats
     int _values [maxSize];
     int _currentIndex;
     int _numValues;
+    int _runningTotal;
 }
 
 #endif
