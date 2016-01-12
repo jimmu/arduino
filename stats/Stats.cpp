@@ -10,20 +10,20 @@ Stats::Stats(int bufferSize) {
   _runningTotal = 0;
 }
 
-int median(int value){
+int Stats::median(int value){
   return 0;
 }
 
-int mean(int value){
+int Stats::mean(int value){
   _runningTotal += value;
   // If the buffer is already full, take the value which 
   // is about to be overwritten and subtract it from the running total.
   if (_numValues >= _bufferSize){
     int oldestIndex = _currentIndex-1;
     if (oldestIndex == -1) {
-      oldestIndex += bufferSize;
+      oldestIndex += _bufferSize;
     }
-    _runningTotal -= values[oldestIndex];
+    _runningTotal -= _values[oldestIndex];
   }
   _values[_currentIndex] = value;
   _currentIndex++;
@@ -32,5 +32,5 @@ int mean(int value){
   }
   _numValues++;
   int divisor = (_numValues < _bufferSize)? _numValues : _bufferSize;
-  return sum/divisor;
+  return _runningTotal/divisor;
 }

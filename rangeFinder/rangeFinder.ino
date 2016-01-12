@@ -18,6 +18,7 @@
  */
 /* Then dicked around with to control a servo motor */
 #include <Servo.h>
+#include <Stats.h>
 
 const int trigPin = 2;
 const int echoPin = 4;
@@ -61,7 +62,7 @@ void loop()
   Serial.print("cm");
   Serial.println();
 
-  myservo.write(map(cm ,0,300,0,180));
+  myservo.write(map(cm ,0,400,0,180));
   
   delay(100);
 }
