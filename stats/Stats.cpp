@@ -23,11 +23,7 @@ int Stats::mean(int value){
   // If the buffer is already full, take the value which 
   // is about to be overwritten and subtract it from the running total.
   if (_numValues >= _bufferSize){
-    int oldestIndex = _currentIndex-1;
-    if (oldestIndex == -1) {
-      oldestIndex += _bufferSize;
-    }
-    _runningTotal -= _values[oldestIndex];
+    _runningTotal -= _values[_currentIndex];
   }
   _values[_currentIndex] = value;
   _currentIndex++;
@@ -44,5 +40,6 @@ int main(int argc, char** argv){
   int x = foo.mean(1);
   x = foo.mean(10);
   x = foo.mean(10);
+  x = foo.mean(12);
   return x;
 }
