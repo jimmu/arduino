@@ -1,4 +1,8 @@
 #include "Stats.h"
+// This is compilable with gcc and has a main
+// method for testing purposes.
+// Compile it, run it, look at the exit code.
+// gcc Stats.cpp; ./a.out; echo $?
 
 Stats::Stats(int bufferSize) {
   _bufferSize = bufferSize;
@@ -33,4 +37,12 @@ int Stats::mean(int value){
   _numValues++;
   int divisor = (_numValues < _bufferSize)? _numValues : _bufferSize;
   return _runningTotal/divisor;
+}
+
+int main(int argc, char** argv){
+  Stats foo(3);
+  int x = foo.mean(1);
+  x = foo.mean(10);
+  x = foo.mean(10);
+  return x;
 }
