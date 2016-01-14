@@ -25,20 +25,60 @@ int Stats::mean(int value){
   if (_numValues >= _bufferSize){
     _runningTotal -= _values[_currentIndex];
   }
+  storeValue(value);
+  int divisor = (_numValues < _bufferSize)? _numValues : _bufferSize;
+  return _runningTotal/divisor;
+}
+
+void Stats::storeValue(int value){
   _values[_currentIndex] = value;
   _currentIndex++;
   if (_currentIndex == _bufferSize){
     _currentIndex = 0;
   }
   _numValues++;
-  int divisor = (_numValues < _bufferSize)? _numValues : _bufferSize;
-  return _runningTotal/divisor;
 }
 
 int Stats::medianFive(int value){
-  return 99;
+  // Store last 5 integers. Return the median of them.
+  // Start off with naive approach.
+  // Fancier ones exist but for a small set any gain is minimal.
+  _bufferSize = 5; // Yes this belongs elsewhere.
+  storeValue(value);
+  // Now we know the low 5 elements of the array
+  // contain the most recent 5 values.
+  // Now sort them into the high 5 elements.
+  int median = 0;
+  if (_numValues >= _bufferSize){
+    sort(0,1, 5,6);
+    sort(3,4, 8,9);
+    // Most of the data is now in the upper half of the array.
+    sort(5,2, 5,7);
+    // Now it all is.
+    sort(6,7, 6,7);
+    sort(5,8, 5,8);
+    sort(7,8, 7,8);
+    sort(6,9, 6,9);
+    sort(6,7, 6,7);
+    sort(8,9, 8,9);
+
+    median = _values[7];
+  }
+  return median;
 }
 
+// This is only safe when the from and to arrays don't overlap.
+// With minor care it can be made to do in-place sort.
+void Stats::sort(int a, int b, int toa, int tob){
+  if (_values[a] > _values[b]){
+    _values[tob] = _values[a];
+    _values[toa] = _values[b];
+  }
+  else {
+    _values[toa] = _values[a];
+    _values[tob] = _values[b];
+  }
+}
 int testMean(int buffSize){
   Stats foo(buffSize);
   int x = foo.mean(1);
@@ -48,8 +88,19 @@ int testMean(int buffSize){
   return x;
 }
 
+int testMedianFive(){
+  Stats foo(1);
+  int x = foo.medianFive(1);
+  x = foo.medianFive(2);
+  x = foo.medianFive(3);
+  x = foo.medianFive(4);
+  x = foo.medianFive(500);
+  return x;
+}
+
 int main(int argc, char** argv){
   //return testMean(2); //11
   //return testMean(3); //10
-  return testMean(4); //8
+  //return testMean(4); //8
+  return testMedianFive();
 }

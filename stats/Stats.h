@@ -15,6 +15,8 @@ class Stats
     int _currentIndex;
     int _numValues;
     int _runningTotal;
+    void storeValue(int value);
+    void sort(int a, int b, int toa, int tob);
 };
 
 #endif
