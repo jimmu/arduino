@@ -35,11 +35,17 @@ int Stats::mean(int value){
   return _runningTotal/divisor;
 }
 
-int main(int argc, char** argv){
-  Stats foo(3);
+int testMean(int buffSize){
+  Stats foo(buffSize);
   int x = foo.mean(1);
   x = foo.mean(10);
   x = foo.mean(10);
   x = foo.mean(12);
   return x;
+}
+
+int main(int argc, char** argv){
+  //return testMean(2); //11
+  //return testMean(3); //10
+  return testMean(4); //8
 }
