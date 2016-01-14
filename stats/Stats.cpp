@@ -35,6 +35,10 @@ int Stats::mean(int value){
   return _runningTotal/divisor;
 }
 
+int Stats::medianFice(int value){
+  return 99;
+}
+
 int testMean(int buffSize){
   Stats foo(buffSize);
   int x = foo.mean(1);
