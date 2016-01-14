@@ -35,7 +35,7 @@ int Stats::mean(int value){
   return _runningTotal/divisor;
 }
 
-int Stats::medianFice(int value){
+int Stats::medianFive(int value){
   return 99;
 }
 

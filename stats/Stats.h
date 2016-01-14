@@ -7,7 +7,8 @@ class Stats
     Stats(int bufferSize);
     int median(int value);
     int mean(int value);
-	static const int maxSize = 10;
+    int medianFive(int value);
+    static const int maxSize = 10;
   private:
     int _bufferSize;
     int _values [maxSize];
