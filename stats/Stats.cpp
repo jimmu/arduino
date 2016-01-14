@@ -67,18 +67,20 @@ int Stats::medianFive(int value){
   return median;
 }
 
-// This is only safe when the from and to arrays don't overlap.
-// With minor care it can be made to do in-place sort.
 void Stats::sort(int a, int b, int toa, int tob){
+  int lower, higher;
   if (_values[a] > _values[b]){
-    _values[tob] = _values[a];
-    _values[toa] = _values[b];
+    lower = _values[b];
+    higher = _values[a];
   }
   else {
-    _values[toa] = _values[a];
-    _values[tob] = _values[b];
+    lower = _values[a];
+    higher = _values[b];
   }
+  _values[toa] = lower;
+  _values[tob] = higher;
 }
+
 int testMean(int buffSize){
   Stats foo(buffSize);
   int x = foo.mean(1);
