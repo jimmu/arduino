@@ -60,7 +60,7 @@ int Stats::medianFive(int value){
     sort(7,8, 7,8);
     sort(6,9, 6,9);
     sort(6,7, 6,7);
-    sort(8,9, 8,9);
+    //sort(8,9, 8,9); We don't actually need to bother fully sorting the array.
 
     median = _values[7];
   }
@@ -96,7 +96,9 @@ int testMedianFive(){
   x = foo.medianFive(2);
   x = foo.medianFive(3);
   x = foo.medianFive(4);
-  x = foo.medianFive(500);
+  x = foo.medianFive(50);
+  x = foo.medianFive(60);
+  x = foo.medianFive(61);
   return x;
 }
 
